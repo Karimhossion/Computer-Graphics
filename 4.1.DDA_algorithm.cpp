@@ -1,42 +1,47 @@
-//m<1
+//m>=1
 #include <windows.h>
 #include <GL/glut.h>
 #include <cmath>
-#include <algorithm>
+#include<algorithm>
 #include <iostream>
 using namespace std;
 
-int x_start, y_start, x_end, y_end;
+int x_start,y_start,x_end,y_end;
 
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glBegin(GL_LINES);
-    glVertex2i(0, 100);
-    glVertex2i(0, -100);
-    glVertex2f(100, 0);
-    glVertex2f(-100, 0);
+    glVertex2i(0,100);
+    glVertex2i(0,-100);
+    glVertex2f(100,0);
+    glVertex2f(-100,0);
     glEnd();
     glBegin(GL_POINTS);
-    float m = float(y_end - y_start) / float(x_end - x_start);
-    if (abs(m) < 1 && x_start > x_end)
+    float m = float(y_end - y_start)/float(x_end - x_start);
+    if(abs(m)>1 && y_start>y_end)
     {
         swap(x_start, x_end);
         swap(y_start, y_end);
     }
     glVertex2i(x_start, y_start);
 
-    if (abs(m) < 1)
+    if(abs(m)>1)
     {
-        float y = y_start;
-        float x = x_start + 1;
-        while (x <= x_end - 1)
+
+         m=1/m;
+        //cout<<m<<endl;
+        float y=y_start+1;
+        float x=x_start;
+        while(y<=y_end - 1)
         {
-            y = y + m;
-            glVertex2i(x, floor(y + 0.5));
-            x = x + 1;
+            x=x+m;
+            glVertex2i(floor(x+0.5),y );
+            y=y+1;
+
         }
         glVertex2i(x_end, y_end);
+
     }
     glEnd();
     glFlush();
@@ -45,13 +50,13 @@ void display()
 int main(int argc, char *argv[])
 {
 
-    cout << "Enter (x_start, y_start) = ";
-    cin >> x_start >> y_start;
-    cout << "Enter (x_end, y_end) = ";
-    cin >> x_end >> y_end;
+    cout<<"Enter (x_start, y_start) = ";
+    cin>>x_start>>y_start;
+    cout<<"Enter (x_end, y_end) = ";
+    cin>>x_end>>y_end;
     glutInit(&argc, argv);
-    glutInitWindowSize(640, 480);
-    glutInitWindowPosition(10, 10);
+    glutInitWindowSize(640,480);
+    glutInitWindowPosition(10,10);
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE | GLUT_DEPTH);
     glutCreateWindow("GLUT Shapes");
 
