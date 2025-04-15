@@ -1,4 +1,4 @@
-//Bresenham Line Drawing . (m<1)
+//Bresenham Line Drawing – ( m≥1 )
 #include<windows.h>
 #include <GL/glut.h>
 #include <iostream>
@@ -7,7 +7,6 @@ int xstart,ystart,xend,yend;
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glLoadIdentity();
     glBegin(GL_LINES);
     glVertex2i(0, 50);
     glVertex2i(0, -50);
@@ -33,16 +32,16 @@ void display(void)
         stepy= -1;
     }
     
-    int p = 2 * dy - dx;
-    for (int i = 0; i <= dx; i++)
+    int p = 2 * dx - dy;
+    for (int i = 0; i <= dy; i++)
     {
         glVertex2i(x, y);
-        x = x + stepx;
+        y = y + stepy;
          if (p < 0) {
-            p = p + 2*dy;
+            p =p + 2 * dx;
         } else {
-            y = y + stepy;
-            p = p + (2*dy) - (2*dx);
+            x = x + stepx;
+            p = p + (2*dx) - (2*dy);
         }
     }
     glEnd();
@@ -62,7 +61,6 @@ int main(int argc, char *argv[])
     glMatrixMode(GL_PROJECTION);
     gluOrtho2D(-50,50,-50,50);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
     glutDisplayFunc(display);
     glutMainLoop();
     return EXIT_SUCCESS;

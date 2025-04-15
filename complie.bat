@@ -1,0 +1,1 @@
+g++ $1 -lfreeglut -lglu32 -lopengl32; ./a.exe 

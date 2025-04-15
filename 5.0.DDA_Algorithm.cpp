@@ -5,9 +5,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-
 int x_start, y_start, x_end, y_end;
-
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -54,9 +52,7 @@ int main(int argc, char *argv[])
     glutInitWindowPosition(10, 10);
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE | GLUT_DEPTH);
     glutCreateWindow("GLUT Shapes");
-
     gluOrtho2D(-10, 10, -10, 10);
-
     glutDisplayFunc(display);
     glutMainLoop();
     return EXIT_SUCCESS;

@@ -1,4 +1,4 @@
-//m>=1
+//m>=1 ----problem
 #include <windows.h>
 #include <GL/glut.h>
 #include <cmath>
@@ -29,7 +29,7 @@ void display()
     if(abs(m)>1)
     {
 
-         m=1/m;
+        m=1/m;
         //cout<<m<<endl;
         float y=y_start+1;
         float x=x_start;
